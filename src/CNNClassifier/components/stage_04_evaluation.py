@@ -4,6 +4,10 @@ from CNNClassifier.entity import EvaluationConfig
 from CNNClassifier.utils.utils import save_json
 
 
+import tensorflow as tf
+from pathlib import Path
+from urllib.parse import urlparse
+
 class Evaluation:
     def __init__(self, config: EvaluationConfig):
         self.config = config
@@ -36,13 +40,15 @@ class Evaluation:
     @staticmethod
     def load_model(path: Path) -> tf.keras.Model:
         return tf.keras.models.load_model(path)
-
-
+    
+    
     def evaluation(self):
-        model = self.load_model(self.config.path_of_model)
-        self._valid_generator()
-        self.score = model.evaluate(self.valid_generator)
+        self.model = self.load_model(self.config.path_of_model)
+        self.valid_generator()
+        self.score = self.model.evaluate(self.valid_generator)
 
     def save_score(self):
         scores = {"loss": self.score[0], "accuracy": self.score[1]}
         save_json(path=Path("scores.json"), data=scores)
+
+   

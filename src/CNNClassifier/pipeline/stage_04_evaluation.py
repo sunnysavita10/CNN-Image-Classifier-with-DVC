@@ -5,12 +5,11 @@ from CNNClassifier import logger
 
 
 
-config = ConfigurationManager()
-
-val_config = config.get_validation_config()
-
-evaluation = Evaluation(val_config)
-
-evaluation.evaluation()
-evaluation.save_score()
-
+try:
+    config = ConfigurationManager()
+    val_config = config.get_validation_config()
+    evaluation = Evaluation(val_config)
+    evaluation.evaluation()
+    evaluation.save_score()
+except Exception as e:
+   raise e
