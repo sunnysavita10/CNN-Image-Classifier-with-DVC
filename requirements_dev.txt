@@ -1,8 +1,8 @@
-tensorflow
+tensorflow==2.12.0
 dvc
 pandas
 notebook
-numpy
+numpy 
 matplotlib
 seaborn
 python-box==6.0.2
@@ -13,6 +13,7 @@ joblib
 types-PyYAML
 scipy
 mlflow==1.26.1
+streamlit
 -e .
 
 ## Dev requirements

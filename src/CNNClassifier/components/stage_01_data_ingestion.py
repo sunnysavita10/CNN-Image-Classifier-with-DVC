@@ -4,7 +4,7 @@ from zipfile import ZipFile
 from CNNClassifier import logger
 from pathlib import Path
 from tqdm import tqdm
-from CNNClassifier.entity import DataIngestionConfig
+from CNNClassifier.entity.config_entity import DataIngestionConfig
 from CNNClassifier.utils import utils
 
 class DataIngestion:
@@ -36,5 +36,5 @@ class DataIngestion:
             list_of_file=zf.namelist()
             updated_list_of_file=self.get_updated_list_of_files(list_of_file)
             for f in tqdm(updated_list_of_file):
-                self.preprocess()
+                self.preprocess(zf, f, self.config.unzip_dir)
             
